@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.11.3-management
+    hostname: "rabbitmq"
+    container_name: rabbitmq
+    networks:
+      - rabbitmq-cluster-net
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - ./advanced.config:/etc/rabbitmq/advanced.config
+      - ./definitions.json:/etc/rabbitmq/definitions.json

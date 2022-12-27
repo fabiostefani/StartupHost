@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  rabbitmq:    
+    hostname: "rabbitmq"
+    container_name: rabbitmq
+    extends:
+      file: rabbitmq/rabbitmq.yaml
+      service: rabbitmq
+    ports:
+      - "15672:15672"  #Management
+      - "5672:5672"    #AMQP
+      - "25672:25672"  #clustering      
+    volumes:      
+      - mq_data:/var/lib/rabbitmq/mnesia      
+      
+volumes:
+  mq_data:
+
+networks:
+  rabbitmq-cluster-net:
